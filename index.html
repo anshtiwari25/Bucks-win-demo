@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucks Win - Color Prediction Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Login Page -->
+        <div id="loginPage" class="page active">
+            <div class="login-container">
+                <div class="logo">
+                    <h1>💰 Bucks Win</h1>
+                    <p class="tagline">Win Big, Win Smart - Your Ultimate Prediction Game</p>
+                </div>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="email" id="email" placeholder="Email ID" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="login-btn">🚀 Login to Bucks Win</button>
+                </form>
+                <p class="register-link">New to Bucks Win? <a href="#" onclick="showRegister()">Join Now</a></p>
+                <p class="admin-link">Admin? <a href="#" onclick="showAdminLogin()">Admin Login</a></p>
+            </div>
+        </div>
+
+        <!-- Admin Login Page -->
+        <div id="adminLoginPage" class="page">
+            <div class="login-container">
+                <div class="logo">
+                    <h1>🔐 Admin Panel</h1>
+                    <p class="tagline">Bucks Win Administration</p>
+                </div>
+                <form id="adminLoginForm">
+                    <div class="input-group">
+                        <input type="text" id="adminUsername" placeholder="Admin Username" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="adminPassword" placeholder="Admin Password" required>
+                    </div>
+                    <button type="submit" class="login-btn">🚀 Admin Login</button>
+                </form>
+                <p class="register-link">User Login? <a href="#" onclick="showLogin()">Back to User Login</a></p>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard Page -->
+        <div id="adminDashboardPage" class="page">
+            <header class="game-header">
+                <div class="header-left">
+                    <h2>🔐 Admin Dashboard</h2>
+                </div>
+                <div class="user-info">
+                    <span class="balance">👨‍💼 Admin Panel</span>
+                </div>
+                <button onclick="adminLogout()" class="logout-btn">Logout</button>
+            </header>
+
+            <div class="game-container">
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <h3>👥 Total Users</h3>
+                        <div class="stat-value" id="adminTotalUsers">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>💰 Total Balance</h3>
+                        <div class="stat-value">₹<span id="adminTotalBalance">0</span></div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>🎮 Total Games</h3>
+                        <div class="stat-value" id="adminTotalGames">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>💳 Total Deposits</h3>
+                        <div class="stat-value">₹<span id="adminTotalDeposits">0</span></div>
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <h3>💳 Payment Verifications</h3>
+                    <div id="paymentVerifications" class="verifications-container">
+                        <!-- Payment verifications will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <div id="userManagementPanel" class="user-management-panel">
+                        <!-- User management will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <div id="withdrawalRequestsPanel" class="withdrawal-requests-panel">
+                        <!-- Withdrawal requests will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Page -->
+        <div id="registerPage" class="page">
+            <div class="login-container">
+                <div class="logo">
+                    <h1>💰 Bucks Win</h1>
+                    <p class="tagline">Join the Winning Revolution</p>
+                </div>
+                <form id="registerForm">
+                    <div class="input-group">
+                        <input type="text" id="regName" placeholder="Full Name or Nickname" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="number" id="regAge" placeholder="Age" min="18" max="100" required>
+                    </div>
+                    <div class="input-group">
+                        <select id="regGender" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not-to-say">Prefer not to say</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="regEmail" placeholder="Email ID" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="regPassword" placeholder="Password" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                    </div>
+                    <button type="submit" class="login-btn">🎮 Join Bucks Win</button>
+                </form>
+                <p class="register-link">Already a member? <a href="#" onclick="showLogin()">Login Here</a></p>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Page -->
+        <div id="dashboardPage" class="page">
+            <header class="game-header">
+                <div class="header-left">
+                    <h2>💰 Bucks Win</h2>
+                </div>
+                <div class="user-info">
+                    <div class="user-profile">
+                        <div class="user-avatar" id="userAvatar">👤</div>
+                        <div class="user-details">
+                            <div class="user-name" id="userName">User</div>
+                            <div class="user-email" id="userEmail">email@example.com</div>
+                        </div>
+                    </div>
+                    <span class="balance">💰 ₹<span id="balance">0</span></span>
+                </div>
+                <button onclick="logout()" class="logout-btn">Logout</button>
+            </header>
+
+            <!-- Top Navigation Bar -->
+            <div class="top-nav-bar">
+                <div class="nav-container">
+                    <div class="nav-left">
+                        <div class="quick-wallet-box">
+                            <div class="wallet-info">
+                                <span class="wallet-label">💰 Wallet</span>
+                                <span class="wallet-amount">₹<span id="navBalance">0</span></span>
+                            </div>
+                            <div class="wallet-buttons">
+                                <button onclick="showRecharge()" class="nav-btn add-money">💵 Add</button>
+                                <button onclick="showWithdraw()" class="nav-btn withdraw-money">💸 Withdraw</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-center">
+                        <button onclick="showHistory()" class="nav-btn history-btn">📊 History</button>
+                        <button onclick="showAbout()" class="nav-btn about-btn">ℹ️ About</button>
+                        <button onclick="showDepositHistory()" class="nav-btn deposit-btn">📋 Deposits</button>
+                        <button onclick="showReportModal()" class="nav-btn report-btn">📞 Report</button>
+                    </div>
+
+                    <div class="nav-right">
+                        <div class="live-leaderboard-box">
+                            <h4>🔥 Live Leaderboard</h4>
+                            <div id="topLeaderboard" class="top-leaderboard"></div>
+                        </div>
+
+                        <div class="user-profile-circle">
+                            <div class="profile-circle" id="profileCircle">
+                                <div class="profile-avatar" id="profileCircleAvatar">👤</div>
+                            </div>
+                            <div class="profile-dropdown" id="profileDropdown">
+                                <button onclick="showProfile()">✏️ Edit Profile</button>
+                                <button onclick="logout()">🚪 Logout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Games Section -->
+            <div class="games-section">
+                <h2>🎮 Available Games</h2>
+                <div class="games-grid">
+                    <div class="game-card" onclick="startColorPredictionGame()">
+                        <div class="game-icon">🎯</div>
+                        <h3>Color Prediction</h3>
+                        <p>Predict the winning color and multiply your money!</p>
+                        <div class="game-features">
+                            <span class="feature">🔴 Red - 2x</span>
+                            <span class="feature">🟢 Green - 2x</span>
+                            <span class="feature">🟣 Violet - 4.5x</span>
+                        </div>
+                        <button class="play-btn">🚀 Play Now</button>
+                         <!-- Demo Mode -->
+                         <button class="demo-btn" onclick="startColorPredictionGameDemo()">Demo</button>
+                    </div>
+
+                    <div class="game-card" onclick="startDiceGame()">
+                        <div class="game-icon">🎲</div>
+                        <h3>Lucky Dice</h3>
+                        <p>Predict the dice roll and win 6x your bet!</p>
+                        <div class="game-features">
+                            <span class="feature">🎯 Exact Number - 6x</span>
+                            <span class="feature">🎲 Six possible outcomes</span>
+                            <span class="feature">⚡ Instant results</span>
+                        </div>
+                        <button class="play-btn">🚀 Play Now</button>
+                          <!-- Demo Mode -->
+                          <button class="demo-btn" onclick="startDiceGameDemo()">Demo</button>
+                    </div>
+
+                    <div class="game-card" onclick="startCardBattleGame()">
+                        <div class="game-icon">🃏</div>
+                        <h3>Card Battle</h3>
+                        <p>Beat the computer's card and win 2x your bet!</p>
+                        <div class="game-features">
+                            <span class="feature">🃏 13 different cards</span>
+                            <span class="feature">🏆 Higher card wins</span>
+                            <span class="feature">💰 2x multiplier on win</span>
+                        </div>
+                        <button class="play-btn">🚀 Play Now</button>
+                         <!-- Demo Mode -->
+                         <button class="demo-btn" onclick="startCardBattleGameDemo()">Demo</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <h4>Total Balance</h4>
+                        <p>₹<span id="totalBalance">0</span></p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-info">
+                        <h4>Total Winnings</h4>
+                        <p>₹<span id="totalWinnings">0</span></p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎮</div>
+                    <div class="stat-info">
+                        <h4>Games Played</h4>
+                        <p><span id="gamesPlayed">0</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Recharge QR Section -->
+            <div class="quick-recharge-section">
+                <h2>💳 Quick Recharge</h2>
+                <div class="qr-recharge-container">
+                    <div class="qr-display">
+                        <img src="attached_assets/payment_qr.jpg" alt="Quick Recharge QR" class="quick-qr">
+                        <div class="qr-info">
+                            <h4>📱 Scan to Recharge Instantly</h4>
+                            <p><strong>Merchant:</strong> ARISHU Junior</p>
+                            <p><strong>UPI ID:</strong> juniorarishu@okhdfcbank</p>
+                            <p><strong>Bank:</strong> Punjab National Bank</p>
+                        </div>
+                    </div>
+                    <div class="qr-instructions">
+                        <h4>🚀 How to Recharge:</h4>
+                        <ol>
+                            <li>📱 Scan QR code with any UPI app</li>
+                            <li>💰 Enter your recharge amount</li>
+                            <li>✅ Complete the payment</li>
+                            <li>📋 Upload screenshot & transaction ID</li>
+                            <li>⚡ Get instant credit!</li>
+                        </ol>
+                        <button onclick="showRecharge()" class="full-recharge-btn">
+                            💳 Complete Recharge Process
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dice Game Page -->
+        <div id="diceGamePage" class="page">
+            <header class="game-header">
+                <div class="header-left">
+                    <button onclick="goToDashboardFromDice()" class="back-btn">← Back</button>
+                    <h2>🎲 Lucky Dice</h2>
+                </div>
+                <div class="user-info">
+                    <span class="balance">💰 ₹<span id="diceGameBalance">0</span></span>
+                </div>
+            </header>
+
+            <div class="game-container">
+                <div class="game-board">
+                    <div class="prediction-section">
+                        <h2>🎯 Predict the Dice Roll</h2>
+                        <div class="color-options">
+                            <button class="color-btn" onclick="selectDiceNumber(1)" data-dice-number="1" style="background: linear-gradient(135deg, #ff6b6b, #ee5a52);">
+                                <span>🎲 1</span>
+                                <span class="multiplier">6x</span>
+                            </button>
+                            <button class="color-btn" onclick="selectDiceNumber(2)" data-dice-number="2" style="background: linear-gradient(135deg, #4CAF50, #45a049);">
+                                <span>🎲 2</span>
+                                <span class="multiplier">6x</span>
+                            </button>
+                            <button class="color-btn" onclick="selectDiceNumber(3)" data-dice-number="3" style="background: linear-gradient(135deg, #2196F3, #1976D2);">
+                                <span>🎲 3</span>
+                                <span class="multiplier">6x</span>
+                            </button>
+                            <button class="color-btn" onclick="selectDiceNumber(4)" data-dice-number="4" style="background: linear-gradient(135deg, #ff9800, #f57c00);">
+                                <span>🎲 4</span>
+                                <span class="multiplier">6x</span>
+                            </button>
+                            <button class="color-btn" onclick="selectDiceNumber(5)" data-dice-number="5" style="background: linear-gradient(135deg, #9c27b0, #8e24aa);">
+                                <span>🎲 5</span>
+                                <span class="multiplier">6x</span>
+                            </button>
+                            <button class="color-btn" onclick="selectDiceNumber(6)" data-dice-number="6" style="background: linear-gradient(135deg, #607D8B, #455A64);">
+                                <span>🎲 6</span>
+                                <span class="multiplier">6x</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="betting-section">
+                        <h3>💰 Select Bet Amount</h3>
+                        <div class="amount-options">
+                            <button class="amount-btn dice-amount-btn" onclick="selectDiceAmount(10)">₹10</button>
+                            <button class="amount-btn dice-amount-btn" onclick="selectDiceAmount(50)">₹50</button>
+                            <button class="amount-btn dice-amount-btn" onclick="selectDiceAmount(100)">₹100</button>
+                            <button class="amount-btn dice-amount-btn" onclick="selectDiceAmount(500)">₹500</button>
+                        </div>
+                        <div class="custom-amount">
+                            <input type="number" id="customDiceAmount" placeholder="Enter custom amount" min="10">
+                        </div>
+                        <button id="placeDiceBet" class="place-bet-btn" onclick="placeDiceBet()">🎲 Roll Dice</button>
+                    </div>
+                </div>
+
+                <div class="wallet-section">
+                    <h3>💳 Wallet Management</h3>
+                    <div class="balance-box">
+                        <div class="balance-display">
+                            <h4>💰 Current Balance</h4>
+                            <div class="balance-amount">₹<span id="diceBalanceDisplay">0</span></div>
+                            <div class="balance-subtitle">Available for betting</div>
+                        </div>
+                    </div>
+                    <div class="wallet-actions">
+                        <button onclick="showRecharge()" class="wallet-btn recharge">💵 Add Money</button>
+                        <button onclick="showWithdraw()" class="wallet-btn withdraw">💸 Withdraw</button>
+                    </div>
+                </div>
+
+                <div class="welcome-section">
+                    <h3>🎲 Lucky Dice Rules!</h3>
+                    <div class="welcome-message">
+                        <p>🌟 Pick a number from 1-6 and place your bet!</p>
+                        <p>💡 <strong>Pro Tip:</strong> If you guess the exact number, you win 6x your bet!</p>
+                        <p>🚀 <strong>Fair Play:</strong> Each number has an equal 1/6 chance of winning!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card Battle Game Page -->
+        <div id="cardBattleGamePage" class="page">
+            <header class="game-header">
+                <div class="header-left">
+                    <button onclick="goToDashboardFromCard()" class="back-btn">← Back</button>
+                    <h2>🃏 Card Battle</h2>
+                </div>
+                <div class="user-info">
+                    <span class="balance">💰 ₹<span id="cardBattleGameBalance">0</span></span>
+                </div>
+            </header>
+
+            <div class="game-container">
+                <div class="game-board">
+                    <div class="prediction-section">
+                        <h2>🃏 Choose Your Card</h2>
+                        <div class="color-options" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; justify-content: center; max-width: 800px; margin: 0 auto;">
+                            <button class="color-btn card-btn" onclick="selectCard('A')" data-card="A" style="background: linear-gradient(135deg, #ff6b6b, #ee5a52); min-width: 80px; padding: 15px 10px;">
+                                <span>🃑 A</span>
+                                <span class="multiplier" style="font-size: 12px;">Value: 1</span>
+                            </button>
+                            <button class="color-btn card-btn" onclick="selectCard('2')" data-card="2" style="background: linear-gradient(135deg, #4CAF50, #45a049); min-width: 80px; padding: 15px 10px;">
+                                <span>🃒 2</span>
+                                <span class="multiplier" style="font-size: 12px;">Value: 2</span>
+                            </button>
+                            <button class="color-btn card-btn" onclick="selectCard('3')" data-card="3" style="background: linear-gradient(135deg, #2196F3, #1976D2); min-width: 80px; padding: 15px 10px;">
+                                <span>🃓 3</span>
+                                <span class="multiplier" style="font-size: 12px;">Value: 3</span>
+                            </button>
+                            <button class="color-btn card-btn" onclick="selectCard('4')" data-card="4" style="background: linear-gradient(135deg, #ff9800, #f57c00); min-width: 80px; padding: 15px 10px;">
+                                <span>🃔 4</span>
+                                <span class="multiplier" style="font-size: 12px;">Value: 4</span>
+                            </button>
+                            <button class="color-btn card-btn" onclick="selectCard('5')" data-card="5" style="background: linear-gradient(135deg, #9c27b0, #8e24aa); min-width: 80px; padding: 15px 10px;">
+                                <span>🃕 5</span>
+                                <span class="multiplier" style="font-size: 12px;">Value: 5</span>
+                            </button>
+                            <button class="color-btn card-btn" onclick="selectCard('6')" data-card="6" style="background: linear-gradient(135deg, #607D8B, #455A64); min-width: 80px; padding: 15px 10px;">
+                                <span>🃖 6</span>
+                                <span class="multiplier" style="font-size: 12px;">Value: 6</span>
+                            </button>
+                            <button class="color-btn card-btn" onclick="selectCard('7')" data-card="7" style="background: linear-gradient(135deg, #795548, #5D4037); min-width: 80px; padding: 15px 10px;">
+                                <span>🃗 7</span>
+                                <span class="multiplier" style="font-size: 12px;">Value: 7</span>
+                            </button>
+                            <button class="color-btn card-btn" onclick="selectCard('8')" data-card="8" style="background: linear-gradient(135deg, #FF5722, #E64A19); min-width: 80px; padding: 15px 10px;">
+                                <span>🃘 8</span>
+                                <span class="multiplier" style="font-size: 12px;">Value: 8</span>
+                            </button>
+                            <button class="color-btn card-btn" onclick="selectCard('9')" data-card="9" style="background: linear-gradient(135deg, #009688, #00796B); min-width: 80px; padding: 15px 10px;">
+                                <span>🃙 9</span>
+                                <span class="multiplier" style="font-size: 12px;">Value: 9</span>
+                            </button>
+                            <button class="color-btn card-btn" onclick="selectCard('10')" data-card="10" style="background: linear-gradient(135deg, #3F51B5, #303F9F); min-width: 80px; padding: 15px 10px;">
+                                <span>🃚 10</span>
+                                <span class="multiplier" style="font-size: 12px;">Value: 10</span>
+                            </button>
+                            <button class="color-btn card-btn" onclick="selectCard('J')" data-card="J" style="background: linear-gradient(135deg, #E91E63, #C2185B); min-width: 80px; padding: 15px 10px;">
+                                <span>🃛 J</span>
+                                <span class="multiplier" style="font-size: 12px;">Value: 11</span>
+                            </button>
+                            <button class="color-btn card-btn" onclick="selectCard('Q')" data-card="Q" style="background: linear-gradient(135deg, #673AB7, #512DA8); min-width: 80px; padding: 15px 10px;">
+                                <span>🃝 Q</span>
+                                <span class="multiplier" style="font-size: 12px;">Value: 12</span>
+                            </button>
+                            <button class="color-btn card-btn" onclick="selectCard('K')" data-card="K" style="background: linear-gradient(135deg, #FFC107, #FFA000); min-width: 80px; padding: 15px 10px;">
+                                <span>🃞 K</span>
+                                <span class="multiplier" style="font-size: 12px;">Value: 13</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="betting-section">
+                        <h3>💰 Select Bet Amount</h3>
+                        <div class="amount-options">
+                            <button class="amount-btn card-amount-btn" onclick="selectCardAmount(10)">₹10</button>
+                            <button class="amount-btn card-amount-btn" onclick="selectCardAmount(50)">₹50</button>
+                            <button class="amount-btn card-amount-btn" onclick="selectCardAmount(100)">₹100</button>
+                            <button class="amount-btn card-amount-btn" onclick="selectCardAmount(500)">₹500</button>
+                        </div>
+                        <div class="custom-amount">
+                            <input type="number" id="customCardAmount" placeholder="Enter custom amount" min="10">
+                        </div>
+                        <button id="playCardBattle" class="place-bet-btn" onclick="playCardBattle()">🃏 Draw Cards</button>
+                    </div>
+                </div>
+
+                <div class="wallet-section">
+                    <h3>💳 Wallet Management</h3>
+                    <div class="balance-box">
+                        <div class="balance-display">
+                            <h4>💰 Current Balance</h4>
+                            <div class="balance-amount">₹<span id="cardBalanceDisplay">0</span></div>
+                            <div class="balance-subtitle">Available for betting</div>
+                        </div>
+                    </div>
+                    <div class="wallet-actions">
+                        <button onclick="showRecharge()" class="wallet-btn recharge">💵 Add Money</button>
+                        <button onclick="showWithdraw()" class="wallet-btn withdraw">💸 Withdraw</button>
+                    </div>
+                </div>
+
+                <div class="welcome-section">
+                    <h3>🃏 Card Battle Rules!</h3>
+                    <div class="welcome-message">
+                        <p>🌟 Choose your card and battle the computer!</p>
+                        <p>💡 <strong>How to Win:</strong> Your card value must be higher than the computer's!</p>
+                        <p>🚀 <strong>Rewards:</strong> Win 2x your bet! Draw = money returned!</p>
+                        <p>🎯 <strong>Card Values:</strong> A=1, 2-10=face value, J=11, Q=12, K=13</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Color Prediction Game Page -->
+        <div id="gamePage" class="page">
+            <header class="game-header">
+                <div class="header-left">
+                    <button onclick="goToDashboard()" class="back-btn">← Back</button>
+                    <h2>🎯 Color Prediction</h2>
+                </div>
+                <div class="user-info">
+                    <span class="balance">💰 ₹<span id="gameBalance">0</span></span>
+                </div>
+            </header>
+
+            <!-- Top Navigation Bar -->
+            <div class="top-nav-bar">
+                <div class="nav-container">
+                    <div class="nav-left">
+                        <div class="quick-wallet-box">
+                            <div class="wallet-info">
+                                <span class="wallet-label">💰 Wallet</span>
+                                <span class="wallet-amount">₹<span id="navBalance">0</span></span>
+                            </div>
+                            <div class="wallet-buttons">
+                                <button onclick="showRecharge()" class="nav-btn add-money">💵 Add</button>
+                                <button onclick="showWithdraw()" class="nav-btn withdraw-money">💸 Withdraw</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-center">
+                        <button onclick="showHistory()" class="nav-btn history-btn">📊 History</button>
+                        <button onclick="showAbout()" class="nav-btn about-btn">ℹ️ About</button>
+                        <button onclick="showDepositHistory()" class="nav-btn deposit-btn">📋 Deposits</button>
+                        <button onclick="showReportModal()" class="nav-btn report-btn">📞 Report</button>
+                    </div>
+
+                    <div class="nav-right">
+                        <div class="live-leaderboard-box">
+                            <h4>🔥 Live Leaderboard</h4>
+                            <div id="topLeaderboard" class="top-leaderboard"></div>
+                        </div>
+
+                        <div class="user-profile-circle">
+                            <div class="profile-circle" id="profileCircle">
+                                <div class="profile-avatar" id="profileCircleAvatar">👤</div>
+                            </div>
+                            <div class="profile-dropdown" id="profileDropdown">
+                                <button onclick="showProfile()">✏️ Edit Profile</button>
+                                <button onclick="logout()">🚪 Logout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-container">
+                <div class="game-board">
+                    <div class="timer-section">
+
+                    <!-- Trends Display Section -->
+                    <div class="trends-section">
+                        <div id="trendsContainer" class="trends-container">
+                            <p style="text-align: center; color: #666;">No trends available yet</p>
+                        </div>
+                    </div>
+
+
+                        <div class="timer">
+                            <span id="timer">30</span>
+                        </div>
+                        <p>⏱️ Seconds remaining</p>
+                    </div>
+
+                    <div class="prediction-section">
+                        <h2>🎯 Select Your Prediction</h2>
+                        <div class="color-options">
+                            <button class="color-btn red" onclick="selectColor('red')" data-color="red">
+                                <span>🔴 Red</span>
+                                <span class="multiplier">2x</span>
+                            </button>
+                            <button class="color-btn green" onclick="selectColor('green')" data-color="green">
+                                <span>🟢 Green</span>
+                                <span class="multiplier">2x</span>
+                            </button>
+                            <button class="color-btn violet" onclick="selectColor('violet')" data-color="violet">
+                                <span>🟣 Violet</span>
+                                <span class="multiplier">4.5x</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="betting-section">
+                        <h3>💰 Select Bet Amount</h3>
+                        <div class="amount-options">
+                            <button class="amount-btn" onclick="selectAmount(10)">₹10</button>
+                            <button class="amount-btn" onclick="selectAmount(50)">₹50</button>
+                            <button class="amount-btn" onclick="selectAmount(100)">₹100</button>
+                            <button class="amount-btn" onclick="selectAmount(500)">₹500</button>
+                        </div>
+                        <div class="custom-amount">
+                            <input type="number" id="customAmount" placeholder="Enter custom amount" min="10">
+                        </div>
+                        <button id="placeBet" class="place-bet-btn" onclick="placeBet()">🎲 Add Bet</button>
+                    </div>
+
+                    <!-- Active Bets Section -->
+                    <div class="active-bets-section">
+                        <div id="activeBetsContainer">
+                            <p style="text-align: center; color: #666;">No active bets</p>
+                        </div>
+                    </div>
+
+                    <div class="result-section" id="resultSection">
+                        <h3>🎊 Game Result</h3>
+                        <div class="result-display">
+                            <div class="result-color" id="resultColor"></div>
+                            <p id="resultText"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wallet-section">
+                    <h3>💳 Wallet Management</h3>
+                    <div class="balance-box">
+                        <div class="balance-display">
+                            <h4>💰 Current Balance</h4>
+                            <div class="balance-amount">₹<span id="balanceDisplay">0</span></div>
+                            <div class="balance-subtitle">Available for betting</div>
+                        </div>
+                    </div>
+                    <div class="wallet-actions">
+                        <button onclick="showRecharge()" class="wallet-btn recharge">💵 Add Money</button>
+                        <button onclick="showWithdraw()" class="wallet-btn withdraw">💸 Withdraw</button>
+                    </div>
+                </div>
+
+                <!-- Welcome Message -->
+                <div class="welcome-section">
+                    <h3>🎉 Welcome to Bucks Win!</h3>
+                    <div class="welcome-message">
+                        <p>🌟 Ready to test your prediction skills? Choose your color and place your bet!</p>
+                        <p>💡 <strong>Pro Tip:</strong> Violet has higher multiplier (4.5x) but lower chance!</p>
+                        <p>🚀 <strong>Get Started:</strong> Add money to your wallet and start winning big!</p>
+                    </div>
+                </div>
+
+                <!-- No Money Message -->
+                <div id="noMoneySection" class="no-money-section" style="display: none;">
+                    <h3>💰 Ready to Start Playing?</h3>
+                    <div class="no-money-content">
+                        <div class="no-money-icon">🎯</div>
+                        <h4>Add Money to Start Your Winning Journey!</h4>
+                        <p>🌟 Your prediction skills are waiting to be tested</p>
+                        <p>💎 Join thousands of winners on Bucks Win</p>
+                        <p>🎁 Get instant access to color prediction games</p>
+                        <div class="no-money-benefits">
+                            <div class="benefit-item">
+                                <span class="benefit-icon">⚡</span>
+                                <span>Instant deposits & withdrawals</span>
+                            </div>
+                            <div class="benefit-item">
+                                <span class="benefit-icon">🔒</span>
+                                <span>100% secure transactions</span>
+                            </div>
+                            <div class="benefit-item">
+                                <span class="benefit-icon">🎮</span>
+                                <span>Fair & transparent gameplay</span>
+                            </div>
+                            <div class="benefit-item">
+                                <span class="benefit-icon">🏆</span>
+                                <span>Win up to 4.5x your bet</span>
+                            </div>
+                        </div>
+                        <button onclick="showRecharge()" class="start-playing-btn">
+                            💵 Add Money & Start Playing
+                        </button>
+                        <p class="minimum-deposit">Minimum deposit: ₹100</p>
+                    </div>
+                </div>
+
+                <!-- History Section -->
+                <div class="history-section">
+                    <h3>📊 Game History</h3>
+                    <div class="history-controls">
+                        <button onclick="showHistory()" class="wallet-btn">📋 View History</button>
+                        <button onclick="clearHistory()" class="wallet-btn withdraw">🗑️ Clear History</button>
+                    </div>
+                    <div id="historyList" class="history-list"></div>
+                </div>
+
+                <!-- Invite Code Section -->
+                <div class="invite-section">
+                    <h3>🎁 Invite Friends</h3>
+                    <div class="invite-content">
+                        <div class="invite-code-display">
+                            <p>Your Invite Code: <strong id="userInviteCode"></strong></p>
+                            <button onclick="copyInviteCode()" class="wallet-btn">📋 Copy Code</button>
+                        </div>
+                        <div class="invite-input">
+                            <input type="text" id="inviteCodeInput" placeholder="Enter friend's invite code">
+                            <button onclick="useInviteCode()" class="wallet-btn">✅ Use Code</button>
+                        </div>
+                        <p class="invite-reward">💰 Get ₹20 when someone uses your code!</p>
+                    </div>
+                </div>
+
+                <!-- Redeem Code Section -->
+                <div class="redeem-section">
+                    <h3>🎫 Redeem Code</h3>
+                    <div class="redeem-content">
+                        <div class="redeem-input">
+                            <input type="text" id="redeemCodeInput" placeholder="Enter redeem code" style="text-transform: uppercase;">
+                            <button onclick="redeemCode()" class="wallet-btn">🎯 Redeem</button>
+                        </div>
+                        <p class="redeem-info">💡 Redeem codes from withdrawals or friends to add money instantly!</p>
+                    </div>
+                </div>
+
+                <!-- Live Leaderboard -->
+                <div class="leaderboard-section">
+                    <h3>🔥 LiveLeaderboard</h3>
+                    <div id="liveLeaderboard" class="live-leaderboard"></div>
+                </div>
+
+                <!-- Winners Chart -->
+                <div class="winners-section">
+                    <h3>🏆 Top Winners</h3>
+                    <div id="winnersChart" class="winners-chart"></div>
+                </div>
+
+                <div class="profile-section">
+                    <h3>👤 Profile Management</h3>
+                    <div class="profile-actions">
+                        <button onclick="showProfile()" class="wallet-btn profile">✏️ Update Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Win/Loss Popup -->
+        <div id="resultPopup" class="result-popup">
+            <div class="popup-content">
+                <div class="popup-icon" id="popupIcon"></div>
+                <h2 id="popupTitle"></h2>
+                <p id="popupAmount"></p>
+                <p id="popupMessage"></p>
+                <button onclick="closeResultPopup()" class="popup-btn">Continue</button>
+            </div>
+        </div>
+
+        <!-- Enhanced Recharge Modal -->
+        <div id="rechargeModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>💰 Secure Payment Gateway</h2>
+                <div class="gateway-header">
+                    <div class="security-badges">
+                        <span class="badge">🔒 SSL Secured</span>
+                        <span class="badge">🛡️ Bank Grade Security</span>
+                        <span class="badge">⚡ Instant Processing</span>
+                    </div>
+                </div>
+
+                <div class="recharge-amounts">
+                    <button onclick="selectRecharge(100)">₹100</button>
+                    <button onclick="selectRecharge(500)">₹500</button>
+                    <button onclick="selectRecharge(1000)">₹1000</button>
+                    <button onclick="selectRecharge(2000)">₹2000</button>
+                </div>
+                <input type="number" id="customRecharge" placeholder="Enter amount (min ₹100)" min="100">
+
+                <div class="payment-methods">
+                    <h3>💳 Secure Payment Gateway</h3>
+                    <div class="method-grid">
+                        <div class="method-info">
+                            <span class="method-icon">🔒</span>
+                            <span class="method-name">All Payment Methods</span>
+                            <span class="method-desc">UPI, Cards, Net Banking, Wallets</span>
+                        </div>
+                        <div class="method-info">
+                            <span class="method-icon">⚡</span>
+                            <span class="method-name">Instant Processing</span>
+                            <span class="method-desc">Automatic verification & crediting</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="processSecurePayment()" class="payment-btn">🚀 Proceed to Pay</button>
+            </div>
+        </div>
+
+        <!-- Enhanced Payment Modal -->
+        <div id="paymentModal" class="modal">
+            <div class="modal-content enhanced-payment">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>💳 Secure Payment</h2>
+
+                <div class="payment-header">
+                    <div class="amount-display">
+                        <h3>Amount to Pay: ₹<span id="paymentAmount">0</span></h3>
+                    </div>
+                    <div class="security-info">
+                        <span class="security-badge">🔒 Direct UPI Payment</span>
+                    </div>
+                </div>
+
+                <script>
+                // Update payment amount display when it changes
+                const observer = new MutationObserver(() => {
+                    const amount = document.getElementById('paymentAmount').textContent;
+                    const displayElement = document.getElementById('paymentAmountDisplay');
+                    if (displayElement) {
+                        displayElement.textContent = amount;
+                    }
+                });
+                if (document.getElementById('paymentAmount')) {
+                    observer.observe(document.getElementById('paymentAmount'), { childList: true, characterData: true });
+                }
+                </script>
+
+                <div class="payment-content">
+                    <!-- UPI Payment Section -->
+                    <div id="upiPaymentSection" class="payment-section active">
+                        <div class="upi-info">
+                            <div class="merchant-info">
+                                <h4>🏪 Pay to: ARISHU Junior</h4>
+                                <p><strong>UPI ID:</strong> juniorarishu@okhdfcbank</p>
+                                <p><strong>Bank:</strong> Punjab National Bank</p>
+                            </div>
+                        </div>
+
+                        <div class="upi-actions">
+                            <button onclick="openUPIApp()" class="upi-btn primary">
+                                📱 Open UPI App
+                            </button>
+                            <button onclick="copyUPIID()" class="upi-btn secondary">
+                                📋 Copy UPI ID
+                            </button>
+                        </div>
+
+                        <div class="payment-steps">
+                            <h4>📋 Payment Steps:</h4>
+                            <ol>
+                                <li>Click "Open UPI App" or copy UPI ID</li>
+                                <li>Complete payment in your UPI app</li>
+                                <li>Upload screenshot & enter transaction ID below</li>
+                                <li>Click "Verify Payment" for instant credit</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- QR Code Payment Section -->
+                    <div id="qrPaymentSection" class="payment-section">
+                        <div class="qr-container">
+                            <div class="qr-code">
+                                <img src="attached_assets/payment_qr.jpg" alt="Payment QR Code" id="paymentQR">
+                            </div>
+                            <p class="qr-instruction">📱 Scan QR code with any UPI app</p>
+                            <div class="qr-details">
+                                <p><strong>🏪 Merchant:</strong> ARISHU Junior</p>
+                                <p><strong>🏦 Bank:</strong> Punjab National Bank</p>
+                                <p><strong>📱 UPI ID:</strong> juniorarishu@okhdfcbank</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upload Section -->
+                    <div class="upload-section">
+                        <label for="paymentScreenshot" class="upload-label">📷 Upload Payment Screenshot (Required)</label>
+                        <input type="file" id="paymentScreenshot" accept="image/*" required>
+                        <div id="screenshotPreview" class="upload-preview"></div>
+                        <p style="color: #f44336; font-size: 12px; margin: 5px 0;">* Screenshot is mandatory for payment verification</p>
+                    </div>
+
+                    <!-- Transaction Verification Section -->
+                    <div class="verification-section">
+                        <label for="transactionId" class="input-label">🔢 Transaction ID (Required)</label>
+                        <input type="text" id="transactionId" placeholder="Enter your UPI transaction ID" required>
+                        <p style="color: #666; font-size: 12px; margin: 5px 0;">* Copy transaction ID from your UPI app (PhonePe, GPay, Paytm, etc.)</p>
+                    </div>
+
+                    <!-- Confirm Payment Button -->
+                    <div class="confirm-payment-section">
+                        <button onclick="confirmPayment()" class="payment-btn confirm-btn">
+                            ✅ Verify & Add Money
+                        </button>
+                        <p style="color: #666; font-size: 12px; text-align: center; margin-top: 10px;">
+                            💡 Your payment will be verified and credited instantly
+                        </p>
+                    </div>
+
+                    <!-- Manual UPI Payment Notice -->
+                    <div class="manual-payment-notice">
+                        <h4>💳 Manual UPI Payment</h4>
+                        <div class="payment-info">
+                            <p>📱 <strong>Pay to UPI ID:</strong> juniorarishu@okhdfcbank</p>
+                            <p>🏦 <strong>Account Name:</strong> ARISHU Junior</p>
+                            <p>🏛️ <strong>Bank:</strong> Punjab National Bank</p>
+                            <p>💰 <strong>Amount:</strong> ₹<span id="paymentAmountDisplay">0</span></p>
+                        </div>
+                        <div class="payment-steps">
+                            <div class="step-item">
+                                <span>1️⃣</span> <span>Pay using any UPI app</span>
+                            </div>
+                            <div class="step-item">
+                                <span>2️⃣</span> <span>Upload payment screenshot</span>
+                            </div>
+                            <div class="step-item">
+                                <span>3️⃣</span> <span>Enter transaction ID</span>
+                            </div>
+                            <div class="step-item">
+                                <span>4️⃣</span> <span>Get instant credit</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Withdraw Modal -->
+        <div id="withdrawModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>💸 Withdraw Money</h2>
+                <div class="withdraw-method">
+                    <label for="withdrawMethod">Select Withdrawal Method:</label>
+                    <select id="withdrawMethod" onchange="toggleWithdrawFields()">
+                        <option value="bank">🏦 Bank Transfer</option>
+                        <option value="redeem">🎫 Generate Redeem Code</option>
+                    </select>                </div>
+                <input type="number" id="withdrawAmount" placeholder="Enter amount (min ₹100)" min="100">
+                <div id="bankFields">
+                    <input type="text" id="accountNumber" placeholder="Account Number" maxlength="20">
+                    <input type="text" id="ifscCode" placeholder="IFSC Code" maxlength="11" style="text-transform: uppercase;">
+                    <input type="text" id="accountHolder" placeholder="Account Holder Name">
+                    <div class="save-details-section">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="saveDetails">
+                            <span class="checkmark"></span>
+                            Save bank details for future withdrawals
+                        </label>
+                    </div>
+                </div>
+                <div id="redeemInfo" style="display: none;">
+                    <p style="color: #666; font-size: 14px; margin: 10px 0;">
+                        💡 Redeem codes require 10% more points than withdrawal amount
+                    </p>
+                </div>
+                <button onclick="processWithdrawEnhanced()" class="payment-btn">💸 Process Withdrawal</button>
+            </div>
+        </div>
+
+         <!-- Report Modal -->
+         <div id="reportModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>📞 Report Issue</h2>
+                <div class="report-form">
+                    <textarea id="reportMessage" placeholder="Describe your issue..." rows="4" required></textarea>
+                    <button type="button" onclick="submitReport()" class="submit-btn">Submit Report</button>
+                    <p id="reportSuccess" style="color: green; display: none;">Report submitted successfully!</p>
+                    <p id="reportError" style="color: red; display: none;">Failed to submit report. Please try again.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Insufficient Balance Modal -->
+        <div id="insufficientBalanceModal" class="modal">
+            <div class="modal-content insufficient-balance">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div class="popup-icon">💸</div>
+                <h2>Insufficient Balance!</h2>
+                <div class="balance-info">Your current balance: ₹<span id="currentBalancePopup">0</span></div>
+                <div class="required-info">Required amount: ₹<span id="requiredAmountPopup">0</span></div>
+                <div class="shortage-info">You need ₹<span id="shortageAmountPopup">0</span> more</div>
+                <div class="quick-benefits">
+                    <div class="benefit-highlight">
+                        <span>🎯</span>
+                        <span>Win up to 4.5x your bet</span>
+                    </div>
+                    <div class="benefit-highlight">
+                        <span>⚡</span>
+                        <span>Instant deposits</span>
+                    </div>
+                    <div class="benefit-highlight">
+                        <span>🔒</span>
+                        <span>100% secure</span>
+                    </div>
+                </div>
+                <div class="insufficient-actions">
+                    <button onclick="showRechargeFromInsufficientBalance()" class="payment-btn">🚀 Add Money & Start Winning</button>
+                    <button onclick="closeModal()" class="cancel-btn">Maybe Later</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Update Modal -->
+        <div id="profileModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>👤 Update Profile</h2>
+                <form id="profileUpdateForm">
+                    <div class="input-group">
+                        <input type="text" id="updateName" placeholder="Full Name or Nickname" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="number" id="updateAge" placeholder="Age" min="18" max="100" required>
+                    </div>
+                    <div class="input-group">
+                        <select id="updateGender" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not-to-say">Prefer not to say</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="updateEmail" placeholder="Email ID" readonly>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="updatePassword" placeholder="New Password (leave empty to keep current)">
+                    </div>
+                    <button type="submit" class="payment-btn">✅ Update Profile</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- History Modal -->
+        <div id="historyModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>📊 Game History</h2>
+                <div id="historyContent" class="history-content">
+                    <!-- History will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Popup -->
+        <div id="successPopup" class="result-popup">
+            <div class="popup-content success-popup">
+                <div class="popup-icon">✅</div>
+                <h2 id="successTitle">Success!</h2>
+                <p id="successMessage">Operation completed successfully</p>
+                <button onclick="closeSuccessPopup()" class="popup-btn">Continue</button>
+            </div>
+        </div>
+
+        <!-- Redeem Code Popup -->
+        <div id="redeemCodePopup" class="result-popup">
+            <div class="popup-content redeem-popup">
+                <div class="popup-icon">🎫</div>
+                <h2>Redeem Code Generated!</h2>
+                <div class="redeem-code-display">
+                    <p>Your redeem code worth ₹<span id="redeemAmount">0</span>:</p>
+                    <div class="redeem-code-box">
+                        <span id="redeemCodeText">CODE</span>
+                        <button onclick="copyRedeemCode()" class="copy-btn">📋</button>
+                    </div>
+                    <p class="redeem-note">Share this code with others to transfer money!</p>
+                </div>
+                <button onclick="closeRedeemCodePopup()" class="popup-btn">Close</button>
+            </div>
+        </div>
+
+        <!-- Save Bank Details Confirmation -->
+        <div id="saveBankDetailsModal" class="modal">
+            <div class="modal-content">
+                <div class="confirmation-content">
+                    <div class="popup-icon">🏦</div>
+                    <h2>Save Bank Details?</h2>
+                    <p>Do you want to save these bank details for future withdrawals?</p>
+                    <div class="bank-preview">
+                        <p><strong>Account:</strong> <span id="previewAccount">****</span></p>
+                        <p><strong>IFSC:</strong> <span id="previewIFSC">****</span></p>
+                        <p><strong>Name:</strong> <span id="previewName">****</span></p>
+                    </div>
+                    <div class="confirmation-actions">
+                        <button onclick="confirmSaveBankDetails(true)" class="payment-btn">✅ Yes, Save</button>
+                        <button onclick="confirmSaveBankDetails(false)" class="cancel-btn">❌ No, Don't Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Us Modal -->
+        <div id="aboutModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>ℹ️ About Bucks Win</h2>
+                <div class="about-content">
+                    <div class="about-section">
+                        <h3>🎯 Welcome to Bucks Win!</h3>
+                        <p>Bucks Win is the ultimate color prediction gaming platform where skill meets fortune. Join thousands of players who have discovered the thrill of strategic gaming and winning big!</p>
+                    </div>
+
+                    <div class="about-section">
+                        <h3>🎮 How It Works</h3>
+                        <ul>
+                            <li>🔴 <strong>Red & Green:</strong> 2x multiplier - Double your money!</li>
+                            <li>🟣 <strong>Violet:</strong> 4.5x multiplier - Maximum rewards!</li>
+                            <li>⏱️ <strong>30-second rounds:</strong> Quick, exciting gameplay</li>
+                            <li>💰 <strong>Multiple bets:</strong> Place several bets per round</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-section">
+                        <h3>🛡️ Why Choose Bucks Win?</h3>
+                        <ul>
+                            <li>⚡ <strong>Instant Deposits:</strong> Start playing immediately</li>
+                            <li>🔒 <strong>100% Secure:</strong> Your money and data are protected</li>
+                            <li>🎁 <strong>Welcome Bonus:</strong> ₹100 free on registration</li>
+                            <li>👥 <strong>Refer & Earn:</strong> ₹20 for each friend you invite</li>
+                            <li>💳 <strong>Multiple Withdrawal Options:</strong> Bank transfer or redeem codes</li>
+                            <li>📱 <strong>Mobile Friendly:</strong> Play anywhere, anytime</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-section">
+                        <h3>🏆 Community Features</h3>
+                        <ul>
+                            <li>🔥 <strong>Live Leaderboard:</strong> Compete with top players</li>
+                            <li>📊 <strong>Game History:</strong> Track your performance</li>
+                            <li>🎫 <strong>Redeem Codes:</strong> Share winnings with friends</li>
+                            <li>💎 <strong>VIP Status:</strong> Unlock exclusive rewards</li>
+                        </ul>
+                    </div>
+
+                    <div class="about-section responsible-gaming">
+                        <h3>⚖️ Responsible Gaming</h3>
+                        <p>We promote responsible gaming. Play for entertainment, set limits, and never bet more than you can afford to lose. If you need help, please reach out to gaming addiction support services.</p>
+                    </div>
+
+                    <div class="about-section contact">
+                        <h3>📞 Contact & Support</h3>
+                        <p><strong>Email:</strong> support@buckswin.com</p>
+                        <p><strong>UPI:</strong> juniorarishu@okhdfcbank</p>
+                        <p><strong>Hours:</strong> 24/7 Support Available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deposit History Modal -->
+        <div id="depositHistoryModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>📋 Deposit History</h2>
+                <div class="deposit-filters">
+                    <input type="text" id="depositSearch" placeholder="Search by name, email, or phone..." onkeyup="filterDeposits()">
+                    <select id="depositFilter" onchange="filterDeposits()">
+                        <option value="all">All Deposits</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+                </div>
+                <div id="depositHistoryContent" class="deposit-history-content">
+                    <!-- Deposit history will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Status Modal -->
+        <div id="paymentStatusModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="paymentStatusTitle">⏳ Payment Processing</h2>
+                <div class="status-content">
+                    <div class="status-icon" id="paymentStatusIcon">⏳</div>
+                    <p id="paymentStatusMessage">Your payment is being verified...</p>
+                    <div class="processing-animation">
+                        <div class="spinner"></div>
+                    </div>
+                    <div id="paymentStatusDetails" class="status-details"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
